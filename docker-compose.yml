@@ -1,0 +1,57 @@
+services:
+  api-curasys-pro:
+    build: .
+    container_name: api-curasys-pro
+    ports:
+      - "5000:5000"
+    env_file:
+      - .env
+    depends_on:
+      - database
+
+  database:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+volumes:
+    db_data:
+
+
+#services:
+#  database:
+#    image: postgres:13
+#    container_name: curasys-pro-db
+#    restart: always
+#    environment:
+#      POSTGRES_USER: ${DB_USER:-user}
+#      POSTGRES_PASSWORD: ${DB_PASSWORD:-password}
+#      POSTGRES_DB: ${DB_NAME:-curasys}
+#    volumes:
+#      - postgres_data:/var/lib/postgresql/data
+#    ports:
+#      - "5432:5432"
+#
+#  api-curasys-pro:
+#    build: .
+#    container_name: api-curasys-pro
+#    restart: always
+#    depends_on:
+#      - database
+#    environment:
+#      FLASK_ENV: ${FLASK_ENV:-development}
+#      DATABASE_URL: ${DATABASE_URL:-postgresql://user:password@database:5432/curasys}
+#      SECRET_KEY: ${SECRET_KEY:-supersecret}
+#    ports:
+#      - "5000:5000"
+#    volumes:
+#      - .:/app
+#
+#volumes:
+#  postgres_data:
