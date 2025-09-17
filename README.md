@@ -1,5 +1,3 @@
-Below is a detailed `README.md` file for your project, including the project structure, commands to run it, and an explanation of its main functions.
-
 # CuraSys-pro-API
 
 CuraSys-pro API is a robust backend system designed with a clean MVC architecture. It leverages modern technologies such as Flask, PostgreSQL, Docker, and WSGI to provide a scalable and maintainable solution for managing medical consultations, exams, and user authentication.
